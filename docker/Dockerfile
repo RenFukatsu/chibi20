@@ -11,11 +11,7 @@ RUN apt-get update && apt-get install -q -y \
         curl \
         gnupg2 \
         lsb-release \
-        wget \
-        libsm6 \
-        libxext6 \
-        libxrender-dev \
-    && rm -rf /var/lib/apt/lists/*
+        apt-utils
 
 RUN curl http://repo.ros2.org/repos.key | apt-key add -
 
@@ -37,11 +33,11 @@ RUN pip3 install -U \
         opencv-python
 
 RUN apt-get update && apt-get install -y \
-        ros-crystal-ros-base \
-        ros-crystal-cv-bridge \
+        ros-dashing-desktop \
+        ros-dashing-cv-bridge \
     && rm -rf /var/lib/apt/lists/*
 
-RUN echo "source /opt/ros/crystal/setup.bash" >> /root/.bashrc
+RUN echo "source /opt/ros/dashing/setup.bash" >> /root/.bashrc
 
 WORKDIR /root
 
@@ -59,11 +55,10 @@ RUN echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH}' >> ~/
 RUN rm -f /usr/bin/python
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
-# for rosdep
+# for chibichare
 RUN apt update
-RUN rosdep init
-
-WORKDIR /root
+RUN apt install ros-dashing-joy
+RUN apt install ros-dashing-teleop-twist-joy
 
 COPY ./ros_entrypoint.sh /
 CMD ["/ros_entrypoint.sh"]

@@ -4,13 +4,13 @@ xhost +
 
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 
-IMAGE_NAME="ros2_crystal"
+IMAGE_NAME="ros2_dashing"
 
 echo $IMAGE_NAME
 
 docker run -it --rm \
   --privileged \
-  --runtime=nvidia \
+  --gpus=all\
   --env=QT_X11_NO_MITSHM=1 \
   --env="DISPLAY" \
   --volume="/etc/group:/etc/group:ro" \
@@ -21,6 +21,6 @@ docker run -it --rm \
   --volume="$HOME/.Xauthority:/root/.Xauthority:rw" \
   --net="host" \
   --volume="$SCRIPT_DIR/:/root/colcon_ws/chibi20/" \
-  --name=ros2_crystal \
+  --name=ros2_dashing \
   $IMAGE_NAME \
   bash

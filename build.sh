@@ -9,7 +9,7 @@ else
     tag=$1
 fi
 
-IMAGE_NAME="ros2_crystal:${tag}"
+IMAGE_NAME="ros2_dashing:${tag}"
 echo $IMAGE_NAME
 
 docker build -t $IMAGE_NAME ./docker
