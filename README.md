@@ -13,7 +13,7 @@
 - [libcreate](https://github.com/AutonomyLab/libcreate)
 
 ## How to use
-# dockerを使う場合
+### dockerを使う場合
 ```
 $ cd ~/colcon_ws
 $ git clone https://github.com/RenFukatsu/chibi20.git
